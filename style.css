@@ -1,0 +1,298 @@
+/* ==========================================================================
+   GLOBAL CONFIGURATION & ROOT VARIATES
+   ========================================================================== */
+:root {
+    --bg-dark: #0a0b10;
+    --card-bg: #121420;
+    --neon-blue: #00f0ff;
+    --neon-red: #ff0055;
+    --neon-green: #39ff14;
+    --text-main: #f0f3f5;
+    --text-muted: #8a99ad;
+}
+
+/* Reset and Base Layout Rules */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+    /* Subtle Neon Mesh Ambient Background Glows */
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(0, 240, 255, 0.06) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(255, 0, 85, 0.06) 0px, transparent 50%);
+    background-attachment: fixed;
+}
+
+/* ==========================================================================
+   COMPONENT STYLES (Header, Hero & Containers)
+   ========================================================================== */
+header {
+    background: rgba(10, 11, 16, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-red));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+}
+
+.sys-status {
+    color: var(--neon-blue);
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+.hero {
+    text-align: center;
+    padding: 120px 20px 80px 20px;
+    position: relative;
+}
+
+.hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    margin-bottom: 15px;
+    background: linear-gradient(180deg, #fff 0%, #7a8a9e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.2));
+}
+
+.hero p {
+    font-size: 1.4rem;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 100px 20px;
+}
+
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    margin: 60px 0 40px 0;
+    border-left: 4px solid var(--neon-blue);
+    padding-left: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* ==========================================================================
+   CARDS & STAT PROGRESS BARS
+   ========================================================================== */
+.card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    padding: 35px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.03));
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: var(--neon-blue);
+    box-shadow: 0 12px 40px rgba(0, 240, 255, 0.15);
+}
+
+.card.attack-card:hover {
+    border-color: var(--neon-red);
+    box-shadow: 0 12px 40px rgba(255, 0, 85, 0.15);
+}
+
+.card.defense-card:hover {
+    border-color: var(--neon-green);
+    box-shadow: 0 12px 40px rgba(57, 255, 20, 0.15);
+}
+
+.tag {
+    display: inline-block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.tag-stamina { background: rgba(0, 240, 255, 0.1); color: var(--neon-blue); border: 1px solid rgba(0, 240, 255, 0.3); }
+.tag-attack { background: rgba(255, 0, 85, 0.1); color: var(--neon-red); border: 1px solid rgba(255, 0, 85, 0.3); }
+.tag-defense { background: rgba(57, 255, 20, 0.1); color: var(--neon-green); border: 1px solid rgba(57, 255, 20, 0.3); }
+
+.card h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.stat-wrapper {
+    margin-top: 18px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.stat-bar-bg {
+    background: rgba(255, 255, 255, 0.04);
+    height: 6px;
+    width: 100%;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.stat-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: var(--neon-blue);
+    transition: width 1s ease-in-out;
+}
+
+/* ==========================================================================
+   SIMULATOR STADIUM MODULE
+   ========================================================================== */
+.simulator-box {
+    background: #0d0f1a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 0 30px rgba(0, 240, 255, 0.02);
+    border-radius: 24px;
+    padding: 50px 30px;
+    text-align: center;
+    margin-top: 40px;
+    position: relative;
+}
+
+.simulator-box h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.sim-btn {
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(90deg, var(--neon-blue), #0066ff);
+    color: #fff;
+    border: none;
+    padding: 16px 45px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.35);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-transform: uppercase;
+    margin-top: 15px;
+}
+
+.sim-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 40px rgba(0, 240, 255, 0.6);
+}
+
+.sim-btn:active {
+    transform: scale(0.98);
+}
+
+.battle-arena {
+    min-height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    padding: 20px;
+}
+
+.spinning {
+    animation: spin 0.25s linear infinite;
+    display: inline-block;
+    font-size: 2.8rem;
+    filter: drop-shadow(0 0 10px var(--neon-blue));
+}
+
+/* ==========================================================================
+   ANIMATIONS & MEDIA QUERIES
+   ========================================================================== */
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    header { padding: 20px; }
+    .hero h1 { font-size: 3rem; letter-spacing: 3px; }
+    .hero p { font-size: 1.1rem; }
+    .section-title { font-size: 1.6rem; }
+    .simulator-box { padding: 35px 20px; }
+    .battle-arena { font-size: 1.1rem; min-height: 120px; }
+}
