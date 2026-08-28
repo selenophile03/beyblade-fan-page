@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEYBLADE X // Evolution Hub</title>
+    <!-- Fonts and Icons -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0b10;
+            --card-bg: #121420;
+            --neon-blue: #00f0ff;
+            --neon-red: #ff0055;
+            --neon-green: #39ff14;
+            --text-main: #f0f3f5;
+            --text-muted: #8a99ad;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 240, 255, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(2ff, 0, 85, 0.05) 0px, transparent 50%);
+        }
+
+        /* Header & Navigation Styling */
+        header {
+            background: rgba(10, 11, 16, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        /* Hero Showcase Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        /* Aesthetic Layout Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 80px 20px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--neon-blue);
+            padding-left: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        /* Glowing Custom Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, transparent 70%, rgba(0, 240, 255, 0.05));
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
+        }
+
+        .card.dragoon:hover {
+            border-color: var(--neon-red);
+            box-shadow: 0 10px 30px rgba(ff, 0, 85, 0.15);
+        }
+
+        .tag {
+            display: inline-block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .tag-attack { background: rgba(255, 0, 85, 0.15); color: var(--neon-red); border: 1px solid var(--neon-red); }
+        .tag-stamina { background: rgba(0, 240, 255, 0.15); color: var(--neon-blue); border: 1px solid var(--neon-blue); }
+        .tag-defense { background: rgba(57, 255, 20, 0.15); color: var(--neon-green); border: 1px solid var(--neon-green); }
+
+        .card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        /* Stat Bars Layout */
+        .stat-wrapper {
+            margin-top: 20px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .stat-bar-bg {
+            background: rgba(255, 255, 255, 0.05);
+            height: 6px;
+            width: 100%;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: var(--neon-blue);
+        }
+
+        /* Dynamic Interactive Simulator Widget */
+        .simulator-box {
+            background: #0d0f1a;
+            border: 2px dashed rgba(0, 240, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .sim-btn {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(90deg, var(--neon-blue), #0077ff);
+            color: #fff;
+            border: none;
+            padding: 14px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            letter-spacing: 2px;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .sim-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(0, 240, 255, 0.7);
+        }
+
+        .battle-arena {
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--neon-green);
+        }
+
+        .spinning {
+            animation: spin 0.2s linear infinite;
+            display: inline-block;
+            font-size: 2.5rem;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Beyblade X // Database</div>
+        <div style="color: var(--neon-blue); font-weight: 700; letter-spacing: 1px;">SYSTEM STATUS: ONLINE</div>
+    </header>
+
+    <section class="hero">
+        <h1>Let It Rip.</h1>
+        <p>Step into the ultimate digital stadium repository. Analyze gear parameters, select blueprints, and dominate the digital arena match frameworks.</p>
+    </section>
+
+    <div class="container">
+        <h2 class="section-title">Featured Parts Database</h2>
+        
+        <div class="grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <span class="tag tag-stamina">STAMINA TYPE</span>
+                <h3>Cobalt Drake 4-60F</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Engineered for peak rotational balance and centrifugal endurance sweeps.</p>
+                <div class="stat-wrapper">
+                    <div class="stat-row"><span>Rotational Speed</span><span style="color: var(--neon-blue)">92%</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 92%;"></div></div>
+                </div>
+                <div class="stat-wrapper">
+                    <div class="stat-row"><span>Impact Deflection</span><span style="color: var(--neon-blue)">65%</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 65%;"></div></div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card dragoon">
+                <span class="tag tag-attack">ATTACK TYPE</span>
+                <h3>Dran Sword 3-60F</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Features a heavy flat gear cluster designed for aggressive recoil trajectories.</p>
+                <div class="stat-wrapper">
+                    <div class="stat-row"><span>Rotational Speed</span><span style="color: var(--neon-red)">55%</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 55%; background: var(--neon-red);"></div></div>
+                </div>
+                <div class="stat-wrapper">
+                    <div class="stat-row"><span>Impact Deflection</span><span style="color: var(--neon-red)">98%</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 98%; background: var(--neon-red);"></div></div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <span class="tag tag-defense">DEFENSE TYPE</span>
+                <h3>Wizard Rod 5-70DB</h3>
