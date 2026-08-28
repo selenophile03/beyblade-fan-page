@@ -1,4 +1,4 @@
-# BEYBLADE X // Evolution Hub Database
+# BEYBLADE X
 
 An ultra-aesthetic, responsive cyber-themed repository fan page built with performance micro-interactions, CSS custom properties, and an interactive algorithmic stadium battle simulator.
 
