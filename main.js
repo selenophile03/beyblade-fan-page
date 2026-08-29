@@ -1,22 +1,18 @@
-/**
- * Beyblade Quantum Matrix Battle Calculation Engine
- * Handles interface loading sequences and deterministic tactical outcomes.
- */
 
 function executeBattleComputation() {
-    // Acquire handles to DOM elements
+
     const arena = document.getElementById('arenaOutput');
     const statusIndicator = document.getElementById('sysStatus');
     
-    // Safety check in case DOM structure changes
+    
     if (!arena || !statusIndicator) return;
 
-    // Transition elements into calculations mode
+ 
     statusIndicator.innerHTML = "COMPUTING VECTORS...";
     statusIndicator.style.color = "var(--neon-red)";
     arena.style.color = "#ffffff";
     
-    // Inject spin micro-animation structure into display viewport
+   
     arena.innerHTML = `
         <span class="spinning">⚙️</span> 
         <span style="margin-left: 20px; letter-spacing: 1px;">
@@ -24,7 +20,7 @@ function executeBattleComputation() {
         </span>
     `;
     
-    // Deterministic Outcome Weighted Mapping Packages
+  
     const tacticalOutcomes = [
         { 
             text: "CRITICAL HIT! Dran Sword wins via devastating Burst Finish! 💥", 
@@ -44,16 +40,16 @@ function executeBattleComputation() {
         }
     ];
     
-    // Trigger network compute delay window mock
+    
     setTimeout(() => {
-        // Select random element from outcome configuration array
+       
         const computedResult = tacticalOutcomes[Math.floor(Math.random() * tacticalOutcomes.length)];
         
-        // Render chosen result values back to UI layout
+        
         arena.style.color = computedResult.color;
         arena.innerHTML = computedResult.text;
         
-        // Reset header diagnostic values
+      
         statusIndicator.innerHTML = "STADIUM MATRICES: READY";
         statusIndicator.style.color = "var(--neon-blue)";
     }, 1600);
